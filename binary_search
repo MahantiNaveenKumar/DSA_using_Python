@@ -1,0 +1,16 @@
+def bin(a,x,si,ei):
+    if si>ei:
+        return -1
+    mid=(si+ei)//2
+    if a[mid]==x:
+        return mid
+    elif a[mid]>x:
+        return bin(a,x,si,mid-1)
+    else:
+        return bin(a,x,mid+1,ei)
+        
+a=[2,3,4,6,7,8,9]
+x=8
+si=0
+ei=len(a)-1
+print(bin(a,x,si,ei))
