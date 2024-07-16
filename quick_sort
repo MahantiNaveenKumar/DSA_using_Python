@@ -4,7 +4,7 @@ def partition(a,si,ei):
 	for i in range(si,ei+1):
 		if a[i]<pivot:
 			c+=1
-	a[si+1],a[si]=a[si],a[si+1]
+	a[si+c],a[si]=a[si],a[si+c]
 	pivot_index=si+c
 	i=si
 	j=ei
