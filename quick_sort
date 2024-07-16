@@ -11,7 +11,7 @@ def partition(a,si,ei):
 	while i<j:
 		if a[i]<pivot:
 			i+=1
-		elif a[j]>pivot:
+		elif a[j]>=pivot:
 			j-=1
 		else:
 			a[i],a[j]=a[j],a[i]
