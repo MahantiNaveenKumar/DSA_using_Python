@@ -1,0 +1,2 @@
+input_str = input("Enter the numbers separated by spaces: ")
+a = list(map(int, input_str.split()))
