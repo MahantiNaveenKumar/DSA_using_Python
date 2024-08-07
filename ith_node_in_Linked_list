@@ -1,44 +1,36 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-def take_input():
-    input_list = list(map(int, input().split()))
-    head = None
-    tail = None
-    for curr in input_list:
-        if curr == -1:
+class node():
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+def inp():
+    head=None
+    a=list(map(int,input().split()))
+    for i in a:
+        if i==-1:
             break
-        new_node = Node(curr)
-        if head is None:
-            head = new_node
-            tail = new_node
+        newnode=node(i)
+        if head==None:
+            head=newnode
         else:
-            tail.next = new_node
-            tail = new_node
+            curr=head
+            while curr.next != None:
+                curr=curr.next
+            curr.next=newnode
     return head
-
-def print_ith_node(head, i):
-    curr = head
-    p = 0
-    while curr is not None:
-        if p == i:
+def ith(head,i):
+    curr=head
+    count=0
+    while curr != None:
+        if count==i:
             print(curr.data)
-            return
-        p += 1
-        curr = curr.next
-    # If the i-th index is out of the bounds of the list, we can print a message
-    print()
-
-# Main execution starts here
-if __name__ == "__main__":
-    t = int(input().strip())
-    while t > 0:
-        head = take_input()
-        i = int(input().strip())
-        print_ith_node(head, i)
-        t -= 1
+        curr=curr.next
+        count+=1
+t=int(input().strip())
+while t>0:
+    head=inp()
+    i=int(input().strip())
+    print(ith(head,i))
+    t-=1
 # example
 
 Sample Input 1 :
