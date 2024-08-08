@@ -1,0 +1,58 @@
+class node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+def takeip():
+    a=list(map(int,input().split()))
+    head= None
+    for i in a:
+        if i==-1:
+            break
+        newnode=node(i)
+        if head==None:
+            head=newnode
+        else:
+            curr=head
+            while curr.next != None:
+                curr=curr.next
+            curr.next=newnode
+        
+    return head
+def printLinkedList(head):
+    curr = head
+    while curr is not None:
+        print(curr.data, end=" -> ")
+        curr = curr.next
+    print("None")
+def length(head):
+    count=0
+    curr=head
+    while curr!=None:
+        count+=1
+        curr=curr.next
+    return count
+def insertnode(head,i,data):
+    newnode=node(data)
+    curr=head
+    if i<0 or i>length(head):
+        return head
+    count=0
+    prev=None
+    curr=head
+    while count<i:
+        prev=curr
+        curr=curr.next
+        count+=1
+    if prev!=None:
+        prev.next=newnode
+    else:
+        head=newnode
+    newnode.next=curr
+    return head
+    
+head=takeip()
+printLinkedList(head)
+i=int(input())
+data=int(input())
+head=insertnode(head,i,data)
+printLinkedList(head)
