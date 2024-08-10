@@ -24,4 +24,4 @@ def printLinkedList(head):
         curr = curr.next
     print("None")
 head=takeip()
-print(printLinkedList(head))
+printLinkedList(head)
