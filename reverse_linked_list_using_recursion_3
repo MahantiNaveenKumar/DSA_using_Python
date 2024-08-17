@@ -1,0 +1,40 @@
+class node():
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+def takeip():
+    head=None
+    a=list(map(int,input().split()))
+    for i in a:
+        if i==-1:
+            break
+        newnode=node(i)
+        if head==None:
+            head=newnode
+        else:
+            curr=head
+            while curr.next!=None:
+                curr=curr.next
+            curr.next=newnode
+    return head
+def printll(head):
+    curr=head
+    while curr!=None:
+        print(curr.data,end="-->")
+        curr=curr.next
+    print("None")
+def reversell(head):
+    if head==None:
+        return None
+    if head.next==None:
+        return head
+    smallhead=reversell(head.next)
+    tail=head.next
+    tail.next=head
+    head.next=None
+    return smallhead
+
+head=takeip()
+printll(head)
+head=reversell(head)
+printll(head)
