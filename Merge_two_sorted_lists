@@ -54,9 +54,9 @@ def merge(head):
 def printLinkedList(head):
     curr=head
     while curr!=None:
-        print(curr.data, end=" ")
+        print(curr.data, end="-->")
         curr = curr.next
-    print()
+    print("None")
     
 
 head = createll()
