@@ -1,0 +1,64 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+def createll():
+    head=None
+    a=list(map(int,input().split()))
+    for i in a:
+        if i==-1:
+            break
+        newnode=node(i)
+        if head==None:
+            head=newnode
+        else:
+            curr=head
+            while curr.next!=None:
+                curr=curr.next
+            curr.next=newnode
+    return head
+def midll(head):
+
+    slow=head
+    fast=head
+    while fast.next!=None and fast.next.next!=None:
+        slow=slow.next
+        fast=fast.next.next
+    return slow
+def mergetwolists(l1,l2):
+    dummy=node(0)
+    tail=dummy
+    while l1!=None and l2!=None:
+        if l1.data<l2.data:
+            tail.next=l1
+            l1=l1.next
+        else:
+            tail.next=l2
+            l2=l2.next
+        tail = tail.next
+    if l1 !=None:
+        tail.next=l1
+    else:
+        tail.next=l2
+    return dummy.next
+def merge(head):
+    if head==None or head.next==None:
+        return head
+    mid=midll(head)
+    nexttomid=mid.next
+    mid.next=None
+    left=merge(head)
+    right=merge(nexttomid)
+    sortedlist=mergetwolists(left,right)
+    return sortedlist
+def printLinkedList(head):
+    curr=head
+    while curr!=None:
+        print(curr.data, end=" ")
+        curr = curr.next
+    print()
+    
+
+head = createll()
+sortedHead = merge(head)
+printLinkedList(sortedHead) 
