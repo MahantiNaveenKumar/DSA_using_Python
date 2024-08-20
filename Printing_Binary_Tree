@@ -1,20 +1,30 @@
-class root:
+class node:
     def __init__(self,data):
         self.data=data
         self.left=None
         self.right=None
 def detailedtree(root):
-    if root == None:
+    if root==None:
         return
-    print(root.data, end=":")
+    print(root.data,end=":")
     if root.left!=None:
-        print("L",root.left.data, end=",")
+        print("L",root.left.data,end=",")
     if root.right!=None:
         print("R",root.right.data,end="")
     print()
     detailedtree(root.left)
     detailedtree(root.right)
-nd1=root(1)
+def takeip():
+    rootdata=int(input())
+    if rootdata==-1:
+        return
+    root=node(rootdata)
+    lefttree=takeip()
+    righttree=takeip()
+    root.left=lefttree
+    root.right=righttree
+    return root
+'''nd1=root(1)
 nd2=root(2)
 nd3=root(3)
 nd4=root(4)
@@ -22,5 +32,6 @@ nd5=root(5)
 nd1.left=nd2
 nd1.right=nd3
 nd2.left=nd4
-nd3.right=nd5
-detailedtree(nd1)
+nd3.right=nd5'''
+root=takeip()
+detailedtree(root)
