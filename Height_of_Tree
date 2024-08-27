@@ -1,0 +1,38 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        
+def ipdata():
+    rootdata=int(input())
+    if rootdata==-1:
+        return
+    root=node(rootdata)
+    lefttree=ipdata()
+    rightree=ipdata()
+    root.left=lefttree
+    root.right=rightree
+    return root
+    
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+def height(root):
+    if root==None:
+        return 0
+    leftree=height(root.left)
+    rightree=height(root.right)
+    return 1+max(leftree,rightree)
+
+root=ipdata()
+printtree(root)
+print(height(root))
