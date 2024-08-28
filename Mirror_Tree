@@ -1,0 +1,39 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def takeip():
+    rootdata=int(input())
+    if rootdata==-1:
+        return 
+    root=node(rootdata)
+    leftroot=takeip()
+    rightroot=takeip()
+    root.left=leftroot
+    root.right=rightroot
+    return root
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+    
+def mirror(root):
+    if root==None:
+        return
+    mirror(root.left)
+    mirror(root.right)
+    root.left,root.right=root.right,root.left
+    return root
+
+root=takeip()
+printtree(root)
+mirror(root)
+printtree(root)
