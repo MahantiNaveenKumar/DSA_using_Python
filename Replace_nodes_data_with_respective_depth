@@ -1,0 +1,37 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def takeip():
+    rootdata=int(input())
+    if rootdata==-1:
+        return 
+    root=node(rootdata)
+    leftroot=takeip()
+    rightroot=takeip()
+    root.left=leftroot
+    root.right=rightroot
+    return root
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+    
+def countnodesatdeapth(root,k=0):
+    if root==None:
+        return 
+    root.data=k
+    countnodesatdeapth(root.left,k+1)
+    countnodesatdeapth(root.right,k+1)
+root=takeip()
+printtree(root)
+countnodesatdeapth(root)
+printtree(root)
