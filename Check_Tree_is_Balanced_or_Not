@@ -1,0 +1,57 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def ipdata():
+    rootdata=int(input())
+    if rootdata==-1:
+        return
+    root=node(rootdata)
+    lefttree=ipdata()
+    righttree=ipdata()
+    root.left=lefttree
+    root.right=righttree
+    return root
+    
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+    
+def length1(root):
+    if root==None:
+        return 0
+    leftdepth=length1(root.left)
+    rightdepth=length1(root.right)
+    return 1+max(leftdepth,rightdepth)
+
+def balancedtree(root):
+    if root==None:
+        return True
+    leftheight=length1(root.left)
+    rightheight=length1(root.right)
+    if leftheight-rightheight>1 or rightheight-leftheight>1:
+        return False
+    isleftbalanced=balancedtree(root.left)
+    isrightbalanced=balancedtree(root.right)
+    if isrightbalanced and isleftbalanced:
+        return True
+    else:
+        return False
+    
+    
+    
+    
+    
+root=ipdata()
+printtree(root)
+print(length1(root))
+print(balancedtree(root))
