@@ -1,0 +1,46 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        
+def takeip():
+    inp=int(input())
+    if inp==-1:
+        return
+    root=node(inp)
+    leftroot=takeip()
+    rightroot=takeip()
+    root.left=leftroot
+    root.right=rightroot
+    return root
+    
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    
+    
+def istreebalanced2(root):
+    if root==None:
+        return 0, True
+    lh,leftbalanced=istreebalanced2(root.left)
+    rh,rightbalanced=istreebalanced2(root.right)
+    h=1+max(lh,rh)
+    if abs(lh-rh)>1:
+        return h,False
+    if leftbalanced and rightbalanced:
+        return h, True
+    else:
+        return h, False
+    
+root=takeip()
+printtree(root)
+print(istreebalanced2(root))
+    
+    
