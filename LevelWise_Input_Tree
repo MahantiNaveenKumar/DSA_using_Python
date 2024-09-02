@@ -1,0 +1,45 @@
+import queue
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        
+def printtree(root):
+    if root==None:
+        return None
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+
+def levelwisetree():
+    print("Enter root")
+    rootdata=int(input())
+    if rootdata==-1:
+        return 
+    root=node(rootdata)
+    q=queue.Queue()
+    q.put(root)
+    while (not(q.empty())):
+        curr_data=q.get()
+        print("Enter the left of Root",curr_data.data)
+        leftdata=int(input())
+        if leftdata!=-1:
+            leftNode=node(leftdata)
+            curr_data.left=leftNode
+            q.put(leftNode)
+        print("Enter the Right of Root",curr_data.data)
+        Rightdata=int(input())
+        if Rightdata!=-1:
+            RightNode=node(Rightdata)
+            curr_data.right=RightNode
+            q.put(RightNode)
+    return root
+            
+root=levelwisetree()
+printtree(root)
