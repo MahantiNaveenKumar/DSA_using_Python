@@ -1,0 +1,39 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()    
+    printtree(root.left)
+    printtree(root.right)
+def inandpre(inord,preord):x
+    if not inord or not preord:
+        return 
+    root_data_preord=preord[0]
+    root=node(root_data_preord)
+    root_data_inord=inord.index(root_data_preord)
+    left_in_inord=inord[:root_data_inord]
+    right_in_inord=inord[root_data_inord+1:]
+    left_in_preord=preord[1:1+len(left_in_inord)]
+    right_in_preord=preord[1+len(left_in_inord):]
+    root.left=inandpre(left_in_inord,left_in_preord)
+    root.right=inandpre(right_in_inord,right_in_preord)
+    return root
+    
+inord=list(map(int,input().split()))
+preord=list(map(int,input().split()))
+root=inandpre(inord,preord)
+printtree(root)
+
+
+example = 
+inorder= 4 2 5 1 6 3 7
+preorder = 1 2 4 5 3 6 7
