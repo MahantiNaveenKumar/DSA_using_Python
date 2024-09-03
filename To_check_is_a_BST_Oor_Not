@@ -1,0 +1,64 @@
+class node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def takeip():
+    rootdata = int(input())
+    if rootdata == -1:
+        return None
+    root = node(rootdata)
+    leftnode = takeip()
+    rightnode = takeip()
+    root.left = leftnode
+    root.right = rightnode
+    return root
+
+def mintree(root):
+    if root == None:
+        return float('inf')
+    leftmin = mintree(root.left)
+    rightmin = mintree(root.right)
+    return min(leftmin, rightmin, root.data)
+
+def maxtree(root):
+    if root == None:
+        return float('-inf')
+    leftmax = maxtree(root.left)
+    rightmax = maxtree(root.right)
+    return max(leftmax, rightmax, root.data)
+
+def isBST(root):
+    if root == None:
+        return True
+    
+    # Use maxtree on left subtree and mintree on right subtree
+    leftmax = maxtree(root.left)
+    rightmin = mintree(root.right)
+    
+    # Check BST properties
+    if root.data <= leftmax or root.data >= rightmin:
+        return False
+    
+    # Recursively check left and right subtrees
+    isleftbst = isBST(root.left)
+    isrightbst = isBST(root.right)
+    
+    return isleftbst and isrightbst
+
+def printtree(root):
+    if root == None:
+        return 
+    print(root.data, end=":")
+    if root.left != None:
+        print("L", root.left.data, end=",")
+    if root.right != None:
+        print("R", root.right.data, end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+
+root = takeip()   
+printtree(root)
+print(isBST(root))
