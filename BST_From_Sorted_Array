@@ -1,0 +1,35 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+
+def printtree(root):
+    if root==None:
+        return 
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+def printtree2(arr):
+    if not arr:
+        return None
+    mid=len(arr)//2
+    root=node(arr[mid])
+    root.left=printtree2(arr[:mid])
+    root.right=printtree2(arr[mid+1:])
+    return root
+    
+arr=list(map(int,input().split()))   
+root=printtree2(arr)
+printtree(root)
+    
+    
+    
+    
+    
