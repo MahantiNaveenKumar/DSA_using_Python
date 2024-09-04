@@ -1,0 +1,59 @@
+import queue
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def printtree(root):
+    if root==None:
+        return
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+def takelevelip():
+    print("Enter the Root : ")
+    rootdata=int(input())
+    root=node(rootdata)
+    q=queue.Queue()
+    q.put(root)
+    while not(q.empty()):
+        curr_data=q.get()
+        print("Enter the Left of the Root",curr_data.data)
+        leftdata=int(input())
+        if leftdata!=-1:
+            leftnode=node(leftdata)
+            curr_data.left=leftnode
+            q.put(leftnode)
+        print("Enter the Right of the Root",curr_data.data)
+        Rightdata=int(input())
+        if Rightdata!=-1:
+            Rightnode=node(Rightdata)
+            curr_data.right=Rightnode
+            q.put(Rightnode)
+    return root
+def isBST(root):
+    if root==None:
+        return 10000,-10000,True
+    leftmin,leftmax,isleftBST=isBST(root.left)
+    rightmin,rightmax,isRightBST=isBST(root.right)
+    minimum=min(leftmin,rightmin,root.data)
+    maximum=max(rightmax,leftmax,root.data)
+    isTreeBST=True
+    if root.data>rightmin or root.data<=leftmax:
+        isTreeBST=False
+    if not(isleftBST) or not(isRightBST):
+        isTreeBST=False
+    return minimum,maximum,isTreeBST
+    
+    
+root=takelevelip()
+printtree(root)    
+print(isBST(root))
+  
+    
+        
