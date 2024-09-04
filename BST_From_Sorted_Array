@@ -17,7 +17,7 @@ def printtree(root):
     printtree(root.left)
     printtree(root.right)
 def printtree2(arr):
-    if not arr:
+    if len(arr)==0:
         return None
     mid=len(arr)//2
     root=node(arr[mid])
