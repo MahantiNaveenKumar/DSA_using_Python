@@ -1,0 +1,65 @@
+import queue
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def printtree(root):
+    if root==None:
+        return
+    print(root.data,end=":")
+    if root.left!=None:
+        print("L",root.left.data,end=",")
+    if root.right!=None:
+        print("R",root.right.data,end="")
+    print()
+    printtree(root.left)
+    printtree(root.right)
+def levelip():
+    print("Enter the Root :")
+    rootdata=int(input())
+    root=node(rootdata)
+    q=queue.Queue()
+    q.put(root)
+    while not(q.empty()):
+        curr_data=q.get()
+        print("Enter the left of the Root",curr_data.data)
+        leftdata=int(input())
+        if leftdata!=-1:
+            leftroot=node(leftdata)
+            curr_data.left=leftroot
+            q.put(leftroot)
+        print("Enter the Right of the Root",curr_data.data)
+        Rightdata=int(input())
+        if Rightdata!=-1:
+            Rightroot=node(Rightdata)
+            curr_data.right=Rightroot
+            q.put(Rightroot)
+    return root
+            
+def roottonode(root,s):
+    if root==None:
+        return None
+    if root.data==s:
+        l=[]
+        l.append(root.data)
+        return l
+    leftoutput=roottonode(root.left,s)
+    if leftoutput!=None:
+        leftoutput.append(root.data)
+        return leftoutput
+    Rightoutput=roottonode(root.right,s)
+    if Rightoutput!=None:
+        Rightoutput.append(root.data)
+        return Rightoutput
+    else:
+        return None
+        
+root=levelip()
+printtree(root)
+print(roottonode(root,5))
+            
+            
+            
+            
+            
